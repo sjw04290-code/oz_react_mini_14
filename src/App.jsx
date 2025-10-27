@@ -2,32 +2,24 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import movieListData from  "./assets/movieListData.json"
+import MovieCard from "./components/MovieCard"
+import {Link} from "react-router"
 
 function App() {
-  const [count, setCount] = useState(0)
-
+    console.log(movieListData.results)
+    /** todos : 메인화면 레이아웃 
+     * 1-1 단계
+     */
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='movie_container'>
+      {movieListData.results.map((movie, _)=> (
+        <Link to="/details">
+        <MovieCard key={movie.id} movie={movie} />
+        </Link>
+      ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
